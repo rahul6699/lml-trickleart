@@ -155,7 +155,12 @@
                         </ul>
                     </div>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('admin.settings.index') }}">
+                    <i class="ri-setting-2-line"></i> 
+                    <span data-key="t-dashboards">Settings</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

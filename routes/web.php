@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\{AdminController,SourceController,LeadStatusController,LeadsController,CallLogsController,NotesController};
+use App\Http\Controllers\Admin\{AdminController,SourceController,LeadStatusController,LeadsController,CallLogsController,NotesController,SettingsController};
 use App\Http\Controllers\Admin\Auth\{LoginController};
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +44,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
         Route::resource('note', NotesController::class);
         Route::post('note/list',[NotesController::class,'list'])->name('note.list');
+        
+        Route::resource('settings', SettingsController::class);
 
     });
 });
