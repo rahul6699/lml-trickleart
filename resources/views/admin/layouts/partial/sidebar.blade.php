@@ -100,7 +100,7 @@
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarTables" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarTables">
-                        <i class="ri-layout-grid-line"></i> <span data-key="t-tables">Source</span>
+                        <i class="ri-layout-grid-line"></i> <span data-key="t-tables">Lead Source</span>
                     </a>
                     <div class="collapse menu-dropdown" id="sidebarTables">
                         <ul class="nav nav-sm flex-column">
@@ -140,11 +140,11 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#leadsTables" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="leadsTables">
+                    <a class="nav-link menu-link" href="#usersTables" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="usersTables">
                         <i class="ri-layout-grid-line"></i> <span data-key="t-tables">Users List</span>
                     </a>
-                    <div class="collapse menu-dropdown" id="leadsTables">
+                    <div class="collapse menu-dropdown" id="usersTables">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a href="{{ route('admin.users.index') }}" class="nav-link" data-key="t-basic-tables">List</a>
@@ -157,7 +157,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('admin.settings.index') }}">
-                    <i class="ri-setting-2-line"></i> 
+                    <i class="las la-cog"></i> 
                     <span data-key="t-dashboards">Settings</span>
                     </a>
                 </li>

@@ -1,6 +1,6 @@
 <form id="formSubmit" action="" onsubmit="form_submit(this);return false;" method="POST">
     <input name="id" type="hidden" value="{{ $source->id }}">
-    <div class="modal-header">
+    <div class="modal-header bg-light p-3">
         <h4 class="modal-title">Source Edit</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>

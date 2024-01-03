@@ -7,14 +7,14 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header d-flex align-items-center">
-                    <h5 class="card-title mb-0 flex-grow-1">Sources List</h5>
+                    <h5 class="card-title mb-0 flex-grow-1">Lead Sources List</h5>
                     <div>
-                        <button id="addRow" type="button" class="btn btn-primary" onclick="addForm(this)">Add Source</button>
+                        <button id="addRow" type="button" class="btn btn-primary" onclick="addForm(this)">Add Lead Source</button>
                     </div>
                 </div>
                 <div class="card-body">
                     <table id="datatable" class="table nowrap align-middle" style="width:100%">
-                        <thead>
+                        <thead class="table-light">
                             <tr>
                                 <th>Sr.no</th>
                                 <th>Name</th>

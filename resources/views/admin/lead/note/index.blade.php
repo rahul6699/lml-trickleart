@@ -13,7 +13,9 @@
                         <thead>
                             <tr>
                                 <th>Sr.no</th>
+                                <th>Title</th>
                                 <th>Note</th>
+                                <th>Created</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -55,8 +57,16 @@ $(document).ready(function() {
                 name: 'DT_RowIndex'
             },
             {
+                data: 'title',
+                name: 'title'
+            },
+            {
                 data: 'note',
                 name: 'note'
+            },
+            {
+                data: 'date',
+                name: 'date'
             },
             {
                 data: 'action',

@@ -29,33 +29,27 @@ class LeadStatusController extends Controller
   
             return Datatables::of($data)
                     ->addIndexColumn()
-                    ->editColumn('status', function($row){
-                        $label = "In-active";
+                    ->addColumn('status', function($row){
+                        $label = '<span class="badge bg-danger-subtle text-danger text-uppercase">In-Active</span>';
                         if($row->status == 1){
-                            $label = "Active";
+                            $label ='<span class="badge bg-success-subtle text-success text-uppercase">Active</span>';
                         }
     
-                            return $label;
+                        return $label;
                     })
                     ->addColumn('action', function($row){
    
-                        $btn = '<div class="dropdown d-inline-block">
-                        <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="ri-more-fill align-middle"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            
-                            <li><a href="javascript:void(0)" class="dropdown-item edit-item-btn" onclick="editForm(this,`'.route('admin.source.edit',$row->id).'`)"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
-                            <li>
-                                <a href="javascript:void(0)" class="dropdown-item remove-item-btn" onclick="deleteRow(this,`'.route('admin.source.destroy',$row->id).'`)">
-                                    <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
-                                </a>
-                            </li>
-                        </ul>
-                    </div>';
+                        $btn = '<div class="d-flex gap-2">
+                            <div class="edit">
+                                <button class="btn btn-sm btn-success edit-item-btn" onclick="editForm(this,`'.route('admin.lead_status.edit',$row->id).'`)">Edit</button>
+                            </div>
+                            <div class="remove">
+                                <button class="btn btn-sm btn-danger remove-item-btn" onclick="deleteRow(this,`'.route('admin.lead_status.destroy',$row->id).'`)">Remove</button>
+                            </div>
+                        </div>';
                         return $btn;
                     })
-                    ->rawColumns(['action'])
+                    ->rawColumns(['status','action'])
                     ->make(true);
         }
     }

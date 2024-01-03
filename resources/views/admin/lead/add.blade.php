@@ -105,7 +105,7 @@
                                 </div>
                                 
                                 <div class="col-lg-12">
-                                    <div class="hstack gap-2 justify-content-end">
+                                    <div class="hstack gap-2 justify-content-left">
                                         <a href="{{ route('admin.leads.index') }}" class="btn btn-light" >Close</a>
                                         <button type="submit" class="btn btn-primary">Submit <i class="st_loader spinner-border spinner-border-sm" style="display:none;"></i></button>
                                     </div>

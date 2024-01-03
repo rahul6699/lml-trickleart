@@ -15,7 +15,7 @@
                 </div>
                 <div class="card-body">
                     <table id="datatable" class="table nowrap align-middle" style="width:100%">
-                        <thead>
+                        <thead class="table-light">
                             <tr>
                                 <th>Sr.no</th>
                                 <th>Name</th>
@@ -88,8 +88,8 @@ $(document).ready(function() {
                 name: 'whatsapp_no'
             },
             {
-                data: 'created_at',
-                name: 'created_at'
+                data: 'createdDate',
+                name: 'createdDate'
             },
             {
                 data: 'action',

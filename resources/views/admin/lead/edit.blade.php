@@ -98,14 +98,14 @@
                                                 data-placeholder="Select Status" value="{{ $lead->LeadStatus->name }}">
                                                 <option value="">Select Status</option>
                                                 @foreach($leadStatus as $sVal1)
-                                                    <option value="{{$sVal1->id}}" @if($sVal->id==$lead->lead_status_id) selected="selected" @endif>{{$sVal1->name}}</option>
+                                                    <option value="{{$sVal1->id}}" @if($sVal1->id==$lead->lead_status_id) selected="selected" @endif>{{$sVal1->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
-                                    <div class="hstack gap-2 justify-content-end">
+                                    <div class="hstack gap-2 justify-content-left">
                                         <a href="{{ route('admin.leads.index') }}" class="btn btn-light" >Close</a>
                                         <button type="submit" class="btn btn-primary">Update <i class="st_loader spinner-border spinner-border-sm" style="display:none;"></i></button>
                                     </div>

@@ -6,6 +6,12 @@
     <div class="modal-body">
         @csrf
             <div class="row g-3">
+                <div class="col-12 mt-3">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" name="title" class="form-control" placeholder="Enter your title" id="title">
+                    </div>
+                </div><!--end col-->
                 <div class="col-md-12 mt-3">
                     <label class="form-label">Note<sup class="text-danger"></sup></label>
                     <textarea name="note" class="form-control" id="" cols="113" rows="5"></textarea>

@@ -7,6 +7,8 @@ use App\Models\{Lead,Source,LeadStatus,Client};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use DataTables;
+use Carbon\Carbon;
+
           
 class LeadsController extends Controller
 {
@@ -41,34 +43,31 @@ class LeadsController extends Controller
                     ->editColumn('lead_source', function($row){
                         return $row->Source->name;
                     })
-                    ->editColumn('status', function($row){
-                        $label = "In-active";
-                        if($row->status == 1){
-                            $label = "Active";
-                        }
-    
-                            return $label;
+                    ->addColumn('createdDate', function($row){
+                        $date = new Carbon($row->created_at);
+
+                        return $date->format('d-m-Y');;
+
                     })
+                    
                     ->addColumn('action', function($row){
    
-                        $btn = '<div class="dropdown d-inline-block">
-                        <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="ri-more-fill align-middle"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a href="'.route('admin.leads.show',$row->id).'" class="dropdown-item"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
-                            <li><a class="dropdown-item edit-item-btn" href="'.route('admin.leads.edit',$row->id).'"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
-                            <li>
-                                <a href="javascript:void(0)" class="dropdown-item remove-item-btn" onclick="deleteRow(this,`'.route('admin.source.destroy',$row->id).'`)">
-                                    <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
-                                </a>
-                            </li>
-                        </ul>
-                    </div>';
-    
+                        
+
+                        $btn = '<div class="d-flex gap-2">
+                            <div class="view">
+                                <a href="'.route('admin.leads.show',$row->id).'" class="btn btn-sm btn-info view-item-btn">View</a>
+                            </div>
+                            <div class="edit">
+                                <a class="btn btn-sm btn-success edit-item-btn" href="'.route('admin.leads.edit',$row->id).'">Edit</a>
+                            </div>
+                            <div class="remove">
+                                <button class="btn btn-sm btn-danger remove-item-btn" onclick="deleteRow(this,`'.route('admin.leads.destroy',$row->id).'`)">Remove</button>
+                            </div>
+                        </div>';
                         return $btn;
                     })
-                    ->rawColumns(['action'])
+                    ->rawColumns(['createdDate','action'])
                     ->make(true);
         }
     }
@@ -85,14 +84,9 @@ class LeadsController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required',
-            'gender' => 'required',
-            'dob' => 'required',
             'contact_no' => 'required',
-            'whatsapp_no' => 'required',
-            'address' => 'required',
             'interested_in' => 'required',
             'source_id' => 'required',
-            'remark' => 'required',
             'lead_status_id' => 'required',
         ]);
 

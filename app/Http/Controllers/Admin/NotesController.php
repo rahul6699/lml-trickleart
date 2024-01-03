@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Note;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 use DataTables;
           
@@ -20,28 +21,29 @@ class NotesController extends Controller
   
             return Datatables::of($data)
                     ->addIndexColumn()
-                    ->addColumn('action', function($row){
+                    ->addColumn('date', function($row){
+                        $date = new Carbon($row->created_at);
 
-                        $btn = '<div class="dropdown d-inline-block">
-                        <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="ri-more-fill align-middle"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            
-                            <li><a href="javascript:void(0)" class="dropdown-item edit-item-btn" onclick="editForm(this,`'.route('admin.note.edit',$row->id).'`)"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
-                            <li>
-                                <a href="javascript:void(0)" class="dropdown-item remove-item-btn" onclick="deleteRow(this,`'.route('admin.note.destroy',$row->id).'`)">
-                                    <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
-                                </a>
-                            </li>
-                        </ul>
-                    </div>';
+                        return $date->format('d-m-Y');;
+
+                    })
+                    ->addColumn('action', function($row){
    
-                        
+                    $btn = '<div class="d-flex gap-2">
+                    <div class="view">
+                        <button class="btn btn-sm btn-success edit-item-btn" onclick="editForm(this,`'.route('admin.note.show',$row->id).'`)">View</button>
+                    </div>
+                    <div class="edit">
+                        <button class="btn btn-sm btn-success edit-item-btn" onclick="editForm(this,`'.route('admin.note.edit',$row->id).'`)">Edit</button>
+                    </div>
+                    <div class="remove">
+                        <button class="btn btn-sm btn-danger remove-item-btn" onclick="deleteRow(this,`'.route('admin.note.destroy',$row->id).'`)">Remove</button>
+                    </div>
+                </div>';
     
                         return $btn;
                     })
-                    ->rawColumns(['action'])
+                    ->rawColumns(['date','action'])
                     ->make(true);
         }
     }
@@ -66,7 +68,8 @@ class NotesController extends Controller
                     'id' => $request->id
                 ],
                 [ 
-                    'note' => $request->note
+                    'title' => $request->title,
+                    'note' => $request->note,
                 ]);        
      
         return Response()->json(["status" => true,"data" => $Note,"message"=>"Note saved successfully."]);
@@ -77,6 +80,13 @@ class NotesController extends Controller
     {
         $Note = Note::find($id);
         $view = view('admin.lead.note.edit', compact('Note'))->render();
+        return Response()->json(["status" => true,"view" => $view]);
+    }
+    
+    public function show($id)
+    {
+        $Note = Note::find($id);
+        $view = view('admin.lead.note.view', compact('Note'))->render();
         return Response()->json(["status" => true,"view" => $view]);
     }
     

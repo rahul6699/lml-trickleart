@@ -14,7 +14,7 @@
                 </div>
                 <div class="card-body">
                     <table id="datatable" class="table nowrap align-middle" style="width:100%">
-                        <thead>
+                        <thead class="table-light">
                             <tr>
                                 <th>Sr.no</th>
                                 <th>Name</th>
